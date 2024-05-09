@@ -1,16 +1,23 @@
 import { FC } from 'react';
 import { LabeledInput } from '../components';
 
-function getConfigItem(section: string, item: string) {
-  const config: any = {
+function getConfigItem<
+  TSection extends keyof typeof config,
+  TItem extends keyof (typeof config)[TSection]
+>(section: TSection, item: TItem) {
+  const config = {
     user: {
       firstName: 'John',
+      lastName: 'Doe',
       birthDate: new Date(1990, 6, 10),
     },
     address: {
       street: 'Main St',
       houseNumber: 123,
       city: 'New York',
+    },
+    employer: {
+      name: 'ACME Inc.',
     },
   };
 
@@ -20,8 +27,7 @@ function getConfigItem(section: string, item: string) {
 export const Configuration: FC = () => {
   const firstName = getConfigItem('user', 'firstName');
   const lastName = getConfigItem('user', 'lastName');
-  const birthDate = getConfigItem('user', 'birthDate');
-
+  const birthDate = getConfigItem('user', 'birthDate').toDateString();
   const employer = getConfigItem('employer', 'name');
 
   const street = getConfigItem('address', 'street');
@@ -43,6 +49,9 @@ export const Configuration: FC = () => {
         </LabeledInput>
         <LabeledInput value={`${street} ${houseNumber}, ${city}`} readOnly>
           Address:
+        </LabeledInput>
+        <LabeledInput value={employer} readOnly>
+          Employer:
         </LabeledInput>
       </div>
     </div>

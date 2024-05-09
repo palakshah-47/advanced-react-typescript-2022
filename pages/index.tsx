@@ -80,6 +80,3 @@ const Home: NextPage = () => {
 };
 
 export default Home;
-
-const notString: string = 1;
-console.log(notString);
