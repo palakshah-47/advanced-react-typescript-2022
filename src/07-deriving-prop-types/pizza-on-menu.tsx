@@ -40,6 +40,7 @@ export const PizzaOnMenu: FC<Props> = ({
           {pizza.extras.map((extra) => (
             <LabeledCheckbox
               key={extra}
+              disabled={extra === 'mushrooms'}
               checked={extras.includes(extra)}
               onChange={() => {
                 setExtras((extras) => {

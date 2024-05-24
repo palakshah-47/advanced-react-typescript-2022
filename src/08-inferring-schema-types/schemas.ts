@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { number, z } from 'zod';
 
 export const pizzaSchema = z.object({
   name: z.string(),
@@ -15,3 +15,8 @@ export const extraIngredientSchema = z.object({
 });
 
 export const extraIngredientsSchema = z.record(extraIngredientSchema);
+
+export interface IExtraIngredient {
+  name: string;
+  price: number;
+}
